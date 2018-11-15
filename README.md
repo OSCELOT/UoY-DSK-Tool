@@ -6,7 +6,7 @@ This release has fixed the paging issue. The source has been recompiled with Spr
 
 Added columns sorting feature.
 
-A update comment box is added.
+An update comment box is added.
 
 ![Alt text](york-dsk-2.4.0-change-comment.png?raw=true "screenshot")
 

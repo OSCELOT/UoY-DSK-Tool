@@ -4,11 +4,16 @@ The University of York Data Source Key building block which allows system admini
 ## Version 2.4.0
 This release has fixed the paging issue. The source has been recompiled with Spring v5.0.6.RELEASE and JDK 1.8.
 
-A update comment box is added
+Added columns sorting feature.
+
+A update comment box is added.
+
 ![Alt text](york-dsk-2.4.0-change-comment.png?raw=true "screenshot")
 
-Result receipt is updated to show change logs
+Result receipt is updated to show change logs.
+
 ![Alt text](york-dsk-2.4.0-result-log.png?raw=true "screenshot")
 
-Change logs are written to Tomcat stdout-stderr log
+Change logs are written to Tomcat stdout-stderr log.
+
 ![Alt text](york-dsk-2.4.0-stdout-stderr.png?raw=true "screenshot")

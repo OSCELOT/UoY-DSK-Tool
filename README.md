@@ -2,7 +2,7 @@
 The University of York Data Source Key building block which allows system administrators to alter user, course and enrolment DSK, row status and availability via the GUI.
 
 ## Version 2.5.1
-This release has resolved the following issue on SaaS (3600.x). The xml-apis-1.0.b2.jar has been excluded in this version.
+This release has resolved the following issue on SaaS (3600.x). Only tested on a 3600.x DVM running with OpenJDK 11. The xml-apis-1.0.b2.jar has been excluded in this version.
 
 ```
 java.lang.SecurityException: Sealing violation loading javax.xml.parsers.FactoryConfigurationError : 

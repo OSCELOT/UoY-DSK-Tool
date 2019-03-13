@@ -5,7 +5,8 @@ The University of York Data Source Key building block which allows system admini
 This release has resolved the following issue on SaaS (3600.x) with OpenJDK. The xml-apis-1.0.b2.jar has been excluded in this version.
 
 ```
-java.lang.SecurityException: Sealing violation loading javax.xml.parsers.FactoryConfigurationError : Package javax.xml.parsers is sealed.
+java.lang.SecurityException: Sealing violation loading javax.xml.parsers.FactoryConfigurationError : 
+Package javax.xml.parsers is sealed.
 ```
 
 ## Version 2.5.0

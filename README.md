@@ -1,6 +1,10 @@
 # UoY-DSK-Tool
 The University of York Data Source Key building block which allows system administrators to alter user, course and enrolment DSK, row status and availability via the GUI.
 
+## Version 2.5.2
+Fixed [Organization Status Update Throws Error, no Logging](https://github.com/OSCELOT/UoY-DSK-Tool/issues/1) issue reported by [hcrites54](https://github.com/hcrites54).
+
+
 ## Version 2.5.1
 This release has resolved the following issue on SaaS (3600.x). Only tested on a 3600.x DVM running with OpenJDK 11. The xml-apis-1.0.b2.jar has been excluded in this version.
 

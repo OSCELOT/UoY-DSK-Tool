@@ -1,6 +1,14 @@
 # UoY-DSK-Tool
 The University of York Data Source Key building block which allows system administrators to alter user, course and enrolment DSK, row status and availability via the GUI.
 
+## Version 2.5.3
+Fixed [Version 2.5.2 throwing error in OpenJDK Instance](https://github.com/OSCELOT/UoY-DSK-Tool/issues/2) issue reported by [hcrites54](https://github.com/hcrites54).
+
+Add the javax.annotation-api lib to fix the **javax.annotation.Resource** issue with OpenJDK 11
+```
+compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
+```
+
 ## Version 2.5.2
 Fixed [Organization Status Update Throws Error, no Logging](https://github.com/OSCELOT/UoY-DSK-Tool/issues/1) issue reported by [hcrites54](https://github.com/hcrites54).
 

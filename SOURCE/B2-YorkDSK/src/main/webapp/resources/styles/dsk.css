@@ -1,0 +1,11 @@
+/* Overwrites some blackboard specific styles to ensure the page displays correctly */
+
+#dataCollectionContainer {
+    margin: 20px 0 0 0 !important;
+}
+
+#dskS0 h3.steptitle {
+    padding: 0 !important;
+    border-top: 0 !important;
+}
+

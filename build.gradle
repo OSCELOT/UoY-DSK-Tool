@@ -1,6 +1,9 @@
-apply plugin: "java"
-apply plugin: "war"
-apply plugin: "maven"
+plugins {
+  id "org.sonarqube" version "2.4"
+  id "java"
+  id "war"
+  id "maven"
+}
 
 // define the version for the project when publishing to maven
 group "york.b2.dsk"
@@ -22,7 +25,7 @@ String getB2Version() {
 }
 
 repositories {
-    mavenCentral()
+    maven { url "https://repo.maven.apache.org/maven2" }
     maven { url "https://maven.blackboard.com/content/repositories/releases/" }
 }
 
@@ -83,8 +86,27 @@ dependencies {
     compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
 }
 
-// Add a task to deploy a B2 using starting block
-task deployB2(dependsOn: "war") << {
-    ant.taskdef(name: "b2deploy", classname: "org.oscelot.ant.B2DeployTask", classpath: project.configurations.buildUtils.asPath)
-    ant.b2deploy(localfilepath: project.war.archivePath, host: "http://localhost:9876", courseorgavailable: 'true', clean: 'true')
+// DEFAULT TASK MODIFICATIONS
+//Java 8 compatibility
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+// Task for generating Maven POM for Github dependencies analysis https://docs.gradle.org/current/userguide/maven_plugin.html#sec:maven_convention_methods
+// see also https://www.baeldung.com/gradle-build-to-maven-pom
+install {
+    doLast{
+        copy {
+            from file("$buildDir/libs/" + project.name + "-" + getB2Version() + ".war")
+            into file("war-building-blocks")
+        }
+    }
+    repositories {
+        mavenInstaller {
+            pom.groupId = project.group
+            pom.version = project.version
+            pom.artifactId = project.name
+            pom.writeTo("pom.xml")
+        }
+    }
 }

@@ -10,8 +10,6 @@
 
 #Eclipse
 /bin/
-.classpath
-.project
 .settings
 
 #VSCODE

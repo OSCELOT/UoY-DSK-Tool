@@ -1,0 +1,18 @@
+# GRADLE
+# https://github.com/github/gitignore/blob/master/Gradle.gitignore
+.gradle
+**/build/
+!src/**/build/
+
+# JAVA
+# Compiled class file
+*.class
+
+#Eclipse
+/bin/
+.classpath
+.project
+.settings
+
+#VSCODE
+.vscode

@@ -47,8 +47,8 @@ import blackboard.persist.user.UserSearch;
 public interface ReferenceServiceManager {
 	
 	
-	public List<GenericFormSelectOption> getCourseCategories();
-	public List<GenericFormSelectOption> getOrganisationCategories();
+	// public List<GenericFormSelectOption> getCourseCategories();
+	// public List<GenericFormSelectOption> getOrganisationCategories();
 	
 	public Map<Parameter, String> getParameterEntities();
 	

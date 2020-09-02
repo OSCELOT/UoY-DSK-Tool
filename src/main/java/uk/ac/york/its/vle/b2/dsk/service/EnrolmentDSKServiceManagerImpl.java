@@ -54,8 +54,8 @@ import blackboard.admin.data.category.OrganizationCategoryMembership;
 import blackboard.admin.data.course.CourseSite;
 import blackboard.admin.data.course.Enrollment;
 import blackboard.admin.data.user.Person;
-import blackboard.admin.persist.category.CourseCategoryMembershipLoader;
-import blackboard.admin.persist.category.OrganizationCategoryMembershipLoader;
+// import blackboard.admin.persist.category.CourseCategoryMembershipLoader;
+// import blackboard.admin.persist.category.OrganizationCategoryMembershipLoader;
 import blackboard.admin.persist.course.EnrollmentLoader;
 import blackboard.admin.persist.course.EnrollmentPersister;
 import blackboard.admin.persist.user.PersonLoader;
@@ -95,11 +95,11 @@ public class EnrolmentDSKServiceManagerImpl implements EnrolmentDSKServiceManage
     @Autowired
     private CourseDbLoader courseDbLoader;
 
-    @Autowired
-    private CourseCategoryMembershipLoader courseCategoryMembershipLoader;
+    // @Autowired
+    // private CourseCategoryMembershipLoader courseCategoryMembershipLoader;
 
-    @Autowired
-    private OrganizationCategoryMembershipLoader organizationCategoryMembershipLoader;
+    // @Autowired
+    // private OrganizationCategoryMembershipLoader organizationCategoryMembershipLoader;
 
     @Autowired
     private EnrollmentLoader enrollmentLoader;
@@ -544,31 +544,31 @@ public class EnrolmentDSKServiceManagerImpl implements EnrolmentDSKServiceManage
     }
 
 
-    private List<CourseCategoryMembership> getCourseCategoryMemberships(String categoryBatchUid) {
-        if (StringUtil.notEmpty(categoryBatchUid)) {
-            CourseCategoryMembership courseCategoryMembership = new CourseCategoryMembership();
-            courseCategoryMembership.setCategoryBatchUid(categoryBatchUid.trim());
-            try {
-                return courseCategoryMembershipLoader.load(courseCategoryMembership);
-            } catch (PersistenceException e) {
-                logger.error("Method: getCourseCategoryMemberships: " + e.getMessage());
-            }
-        }
-        return null;
-    }
+    // private List<CourseCategoryMembership> getCourseCategoryMemberships(String categoryBatchUid) {
+    //     if (StringUtil.notEmpty(categoryBatchUid)) {
+    //         CourseCategoryMembership courseCategoryMembership = new CourseCategoryMembership();
+    //         courseCategoryMembership.setCategoryBatchUid(categoryBatchUid.trim());
+    //         try {
+    //             return courseCategoryMembershipLoader.load(courseCategoryMembership);
+    //         } catch (PersistenceException e) {
+    //             logger.error("Method: getCourseCategoryMemberships: " + e.getMessage());
+    //         }
+    //     }
+    //     return null;
+    // }
 
-    private List<OrganizationCategoryMembership> getOrganisationCategoryMemberships(String categoryBatchUid) {
-        if (StringUtil.notEmpty(categoryBatchUid)) {
-            OrganizationCategoryMembership organizationCategoryMembership = new OrganizationCategoryMembership();
-            organizationCategoryMembership.setCategoryBatchUid(categoryBatchUid.trim());
-            try {
-                return organizationCategoryMembershipLoader.load(organizationCategoryMembership);
-            } catch (PersistenceException e) {
-                logger.error("Method: getOrganisationCategoryMemberships: " + e.getMessage());
-            }
-        }
-        return null;
-    }
+    // private List<OrganizationCategoryMembership> getOrganisationCategoryMemberships(String categoryBatchUid) {
+    //     if (StringUtil.notEmpty(categoryBatchUid)) {
+    //         OrganizationCategoryMembership organizationCategoryMembership = new OrganizationCategoryMembership();
+    //         organizationCategoryMembership.setCategoryBatchUid(categoryBatchUid.trim());
+    //         try {
+    //             return organizationCategoryMembershipLoader.load(organizationCategoryMembership);
+    //         } catch (PersistenceException e) {
+    //             logger.error("Method: getOrganisationCategoryMemberships: " + e.getMessage());
+    //         }
+    //     }
+    //     return null;
+    // }
 
 
     public List<B2Enrolment> getUserEnrolments(Form form, String sortByPropertyName) {
@@ -581,13 +581,13 @@ public class EnrolmentDSKServiceManagerImpl implements EnrolmentDSKServiceManage
                 String selectedCategoryBatchUid = form.getCategory();
                 String selectedOrganisationCategoryBatchUid = form.getOrganisationCategory();
                 // Get User Enrolments in a selected Course and/or Organisation Category
-                if (StringUtil.notEmpty(selectedCategoryBatchUid) && !selectedCategoryBatchUid.equals("-1")) {
-                    // Sort by courseBatchUid
-                    courseEnrolments = getUserEnrolmentsInCategory(selectedUserName, selectedCategoryBatchUid, sortByPropertyName);
-                }
-                if (StringUtil.notEmpty(selectedOrganisationCategoryBatchUid) && !selectedOrganisationCategoryBatchUid.equals("-1")) {
-                    organisationEnrolments = getUserEnrolmentsInOrganisationCategory(selectedUserName, selectedOrganisationCategoryBatchUid, sortByPropertyName);
-                }
+                // if (StringUtil.notEmpty(selectedCategoryBatchUid) && !selectedCategoryBatchUid.equals("-1")) {
+                //     // Sort by courseBatchUid
+                //     courseEnrolments = getUserEnrolmentsInCategory(selectedUserName, selectedCategoryBatchUid, sortByPropertyName);
+                // }
+                // if (StringUtil.notEmpty(selectedOrganisationCategoryBatchUid) && !selectedOrganisationCategoryBatchUid.equals("-1")) {
+                //     organisationEnrolments = getUserEnrolmentsInOrganisationCategory(selectedUserName, selectedOrganisationCategoryBatchUid, sortByPropertyName);
+                // }
                 if (null != courseEnrolments || null != organisationEnrolments) {
                     enrolments = new ArrayList<B2Enrolment>();
                     if (null != courseEnrolments) {
@@ -666,74 +666,74 @@ public class EnrolmentDSKServiceManagerImpl implements EnrolmentDSKServiceManage
         return null;
     }
 
-    private List<B2Enrolment> getUserEnrolmentsInCategory(String userName, String categoryBatchUid, String sortByPropertyName) {
-        List<B2Enrolment> b2Enrolments = null;
-        List<Enrollment> enrollments = getUserEnrolmentList(userName);
-        List<CourseCategoryMembership> courseCategoryMemberships = getCourseCategoryMemberships(categoryBatchUid);
+    // private List<B2Enrolment> getUserEnrolmentsInCategory(String userName, String categoryBatchUid, String sortByPropertyName) {
+    //     List<B2Enrolment> b2Enrolments = null;
+    //     List<Enrollment> enrollments = getUserEnrolmentList(userName);
+    //     List<CourseCategoryMembership> courseCategoryMemberships = getCourseCategoryMemberships(categoryBatchUid);
 
-        if (null != enrollments && null != courseCategoryMemberships) {
-            serviceManager.sortEnrolments(enrollments, sortByPropertyName);
-            B2Enrolment b2Enrolment = null;
-            b2Enrolments = new ArrayList<B2Enrolment>();
-            String courseSiteBatchUid = null;
-            for (Enrollment enrollment : enrollments) {
-                b2Enrolment = new B2Enrolment();
-                b2Enrolment.setEnrollment(enrollment);
-                b2Enrolment.setRole(getCourseOrOrganisationRole(courseRolesMap, enrollment.getRole()));
-                for (CourseCategoryMembership courseCategoryMembership : courseCategoryMemberships) {
-                    if (StringUtil.notEmpty(courseSiteBatchUid = enrollment.getCourseSiteBatchUid()) &&
-                            courseSiteBatchUid.equals(courseCategoryMembership.getCourseSiteBatchUid())) {
-                        b2Enrolment.setCategory(courseCategoryMembership.getCategoryBatchUid());
-                        CourseSite cs = serviceManager.getCourseSiteByBatchUid(courseSiteBatchUid);
-                        if (null != cs) {
-                            b2Enrolment.setCourseId(cs.getCourseId());
-                            b2Enrolment.setCourseTitle(cs.getTitle());
-                            b2Enrolment.setServiceLevel(cs.getServiceLevelType().getFieldName());
-                        }
+    //     if (null != enrollments && null != courseCategoryMemberships) {
+    //         serviceManager.sortEnrolments(enrollments, sortByPropertyName);
+    //         B2Enrolment b2Enrolment = null;
+    //         b2Enrolments = new ArrayList<B2Enrolment>();
+    //         String courseSiteBatchUid = null;
+    //         for (Enrollment enrollment : enrollments) {
+    //             b2Enrolment = new B2Enrolment();
+    //             b2Enrolment.setEnrollment(enrollment);
+    //             b2Enrolment.setRole(getCourseOrOrganisationRole(courseRolesMap, enrollment.getRole()));
+    //             for (CourseCategoryMembership courseCategoryMembership : courseCategoryMemberships) {
+    //                 if (StringUtil.notEmpty(courseSiteBatchUid = enrollment.getCourseSiteBatchUid()) &&
+    //                         courseSiteBatchUid.equals(courseCategoryMembership.getCourseSiteBatchUid())) {
+    //                     b2Enrolment.setCategory(courseCategoryMembership.getCategoryBatchUid());
+    //                     CourseSite cs = serviceManager.getCourseSiteByBatchUid(courseSiteBatchUid);
+    //                     if (null != cs) {
+    //                         b2Enrolment.setCourseId(cs.getCourseId());
+    //                         b2Enrolment.setCourseTitle(cs.getTitle());
+    //                         b2Enrolment.setServiceLevel(cs.getServiceLevelType().getFieldName());
+    //                     }
 
-                        b2Enrolments.add(b2Enrolment);
+    //                     b2Enrolments.add(b2Enrolment);
 
-                        break;
-                    }
-                }
-            }
-        }
+    //                     break;
+    //                 }
+    //             }
+    //         }
+    //     }
 
-        return b2Enrolments;
-    }
+    //     return b2Enrolments;
+    // }
 
-    private List<B2Enrolment> getUserEnrolmentsInOrganisationCategory(String userName, String categoryBatchUid, String sortByPropertyName) {
-        List<B2Enrolment> b2Enrolments = null;
-        List<Enrollment> enrollments = getUserEnrolmentList(userName);
-        List<OrganizationCategoryMembership> organisationCategoryMemberships = getOrganisationCategoryMemberships(categoryBatchUid);
-        if (null != enrollments && null != organisationCategoryMemberships) {
-            serviceManager.sortEnrolments(enrollments, sortByPropertyName);
-            B2Enrolment b2Enrolment = null;
-            b2Enrolments = new ArrayList<B2Enrolment>();
-            String courseSiteBatchUid = null;
-            for (Enrollment enrollment : enrollments) {
-                b2Enrolment = new B2Enrolment();
-                b2Enrolment.setEnrollment(enrollment);
-                b2Enrolment.setRole(getCourseOrOrganisationRole(organisationRolesMap, enrollment.getRole()));
-                for (OrganizationCategoryMembership organisationCategoryMembership : organisationCategoryMemberships) {
-                    if (StringUtil.notEmpty(courseSiteBatchUid = enrollment.getCourseSiteBatchUid()) &&
-                            courseSiteBatchUid.equals(organisationCategoryMembership.getOrganizationBatchUid())) {
-                        b2Enrolment.setCategory(organisationCategoryMembership.getCategoryBatchUid());
-                        CourseSite cs = serviceManager.getCourseSiteByBatchUid(courseSiteBatchUid);
-                        if (null != cs) {
-                            b2Enrolment.setCourseId(cs.getCourseId());
-                            b2Enrolment.setCourseTitle(cs.getTitle());
-                            b2Enrolment.setServiceLevel(cs.getServiceLevelType().getFieldName());
-                        }
-                        b2Enrolments.add(b2Enrolment);
-                        break;
-                    }
-                }
-            }
-        }
+    // private List<B2Enrolment> getUserEnrolmentsInOrganisationCategory(String userName, String categoryBatchUid, String sortByPropertyName) {
+    //     List<B2Enrolment> b2Enrolments = null;
+    //     List<Enrollment> enrollments = getUserEnrolmentList(userName);
+    //     List<OrganizationCategoryMembership> organisationCategoryMemberships = getOrganisationCategoryMemberships(categoryBatchUid);
+    //     if (null != enrollments && null != organisationCategoryMemberships) {
+    //         serviceManager.sortEnrolments(enrollments, sortByPropertyName);
+    //         B2Enrolment b2Enrolment = null;
+    //         b2Enrolments = new ArrayList<B2Enrolment>();
+    //         String courseSiteBatchUid = null;
+    //         for (Enrollment enrollment : enrollments) {
+    //             b2Enrolment = new B2Enrolment();
+    //             b2Enrolment.setEnrollment(enrollment);
+    //             b2Enrolment.setRole(getCourseOrOrganisationRole(organisationRolesMap, enrollment.getRole()));
+    //             for (OrganizationCategoryMembership organisationCategoryMembership : organisationCategoryMemberships) {
+    //                 if (StringUtil.notEmpty(courseSiteBatchUid = enrollment.getCourseSiteBatchUid()) &&
+    //                         courseSiteBatchUid.equals(organisationCategoryMembership.getOrganizationBatchUid())) {
+    //                     b2Enrolment.setCategory(organisationCategoryMembership.getCategoryBatchUid());
+    //                     CourseSite cs = serviceManager.getCourseSiteByBatchUid(courseSiteBatchUid);
+    //                     if (null != cs) {
+    //                         b2Enrolment.setCourseId(cs.getCourseId());
+    //                         b2Enrolment.setCourseTitle(cs.getTitle());
+    //                         b2Enrolment.setServiceLevel(cs.getServiceLevelType().getFieldName());
+    //                     }
+    //                     b2Enrolments.add(b2Enrolment);
+    //                     break;
+    //                 }
+    //             }
+    //         }
+    //     }
 
-        return b2Enrolments;
-    }
+    //     return b2Enrolments;
+    // }
 
     private String getCourseOrOrganisationRole(Map<CourseMembership.Role, String> rolesMap, CourseMembership.Role role) {
         String roleString = null;

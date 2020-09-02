@@ -111,10 +111,10 @@ public class OrganisationDSKController extends DSKController {
                 }
             } else if (type.equals("category")) {
                 //Sort by courseId propertyName
-                model.addAttribute(
-                        modelAndSessionAttributesMap.get("b2.model.key.organisations"),
-                        (courses = courseDskServiceManager.getCoursesByOrganisationCategory(form, "courseId"))
-                );
+                // model.addAttribute(
+                //         modelAndSessionAttributesMap.get("b2.model.key.organisations"),
+                //         (courses = courseDskServiceManager.getCoursesByOrganisationCategory(form, "courseId"))
+                // );
                 if (courses == null) {
                     model.addAttribute("errorCode", "error.search.no_results");
                 }
@@ -155,8 +155,8 @@ public class OrganisationDSKController extends DSKController {
         if (StringUtil.notEmpty(type)) {
             model.addAttribute("inventory_type", "organisation");
             if (type.equals("category")) {
-                model.addAttribute("inventory_list_type", "category");
-                return "organisation_category";
+                // model.addAttribute("inventory_list_type", "category");
+                // return "organisation_category";
             } else if (type.equals("organisation")) {
                 model.addAttribute("inventory_list_type", "organisation");
                 return "organisation_organisation";

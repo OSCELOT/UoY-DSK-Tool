@@ -113,10 +113,10 @@ public class CourseDSKController extends DSKController {
                 }
             } else if (type.equals("category")) {
                 //Sort by courseId propertyName
-                model.addAttribute(
-                        modelAndSessionAttributesMap.get("b2.model.key.courses"),
-                        (courses = courseDskServiceManager.getCoursesByCourseCategory(form, "courseId"))
-                );
+                // model.addAttribute(
+                //         modelAndSessionAttributesMap.get("b2.model.key.courses"),
+                //          (courses = courseDskServiceManager.getCoursesByCourseCategory(form, "courseId"))
+                //  );
                 if (courses == null) {
                     model.addAttribute("errorCode", "error.search.no_results");
                 }
@@ -156,10 +156,11 @@ public class CourseDSKController extends DSKController {
     private String getReturn(String type, ModelMap model) {
         if (StringUtil.notEmpty(type)) {
             model.addAttribute("inventory_type", "course");
-            if (type.equals("category")) {
-                model.addAttribute("inventory_list_type", "category");
-                return "course_category";
-            } else if (type.equals("course")) {
+            // if (type.equals("category")) {
+            //     model.addAttribute("inventory_list_type", "category");
+            //     return "course_category";
+            // } else 
+            if (type.equals("course")) {
                 model.addAttribute("inventory_list_type", "course");
                 return "course_course";
             }

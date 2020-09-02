@@ -47,8 +47,8 @@ import blackboard.admin.data.category.CourseCategoryMembership;
 import blackboard.admin.data.category.OrganizationCategoryMembership;
 import blackboard.admin.data.course.CourseSite;
 import blackboard.admin.persist.category.CourseCategoryLoader;
-import blackboard.admin.persist.category.CourseCategoryMembershipLoader;
-import blackboard.admin.persist.category.OrganizationCategoryMembershipLoader;
+//import blackboard.admin.persist.category.CourseCategoryMembershipLoader;
+//import blackboard.admin.persist.category.OrganizationCategoryMembershipLoader;
 import blackboard.admin.persist.course.CourseSiteLoader;
 
 import blackboard.admin.persist.course.CourseSitePersister;
@@ -80,14 +80,14 @@ public class CourseDSKServiceManagerImpl implements CourseDSKServiceManager {
     @Autowired
     private CourseSitePersister courseSitePersister;
 
-    @Autowired
-    private CourseCategoryLoader courseCategoryLoader;
+    // @Autowired
+    // private CourseCategoryLoader courseCategoryLoader;
 
-    @Autowired
-    private CourseCategoryMembershipLoader courseCategoryMembershipLoader;
+//    @Autowired
+//    private CourseCategoryMembershipLoader courseCategoryMembershipLoader;
 
-    @Autowired
-    private OrganizationCategoryMembershipLoader organisationCategoryMembershipLoader;
+    // @Autowired
+    // private OrganizationCategoryMembershipLoader organisationCategoryMembershipLoader;
 
     @Autowired
     private ReferenceServiceManager referenceServiceManager;
@@ -100,23 +100,23 @@ public class CourseDSKServiceManagerImpl implements CourseDSKServiceManager {
         return getCourses(form, sortByPropertyName, Course.ServiceLevel.COMMUNITY);
     }
 
-    public List<B2Course> getCoursesByCourseCategory(Form form, String sortByPropertyName) {
-        if (form != null) {
-            //CourseSite needs to be used in order to load Disabled courses
-            List<Course> courses = getCoursesByCourseCategoryBatchUid(form.getCategory());
-            return getB2Courses(courses, form, sortByPropertyName);
-        }
-        return null;
-    }
+    // public List<B2Course> getCoursesByCourseCategory(Form form, String sortByPropertyName) {
+    //     if (form != null) {
+    //         //CourseSite needs to be used in order to load Disabled courses
+    //         List<Course> courses = getCoursesByCourseCategoryBatchUid(form.getCategory());
+    //         return getB2Courses(courses, form, sortByPropertyName);
+    //     }
+    //     return null;
+    // }
 
-    public List<B2Course> getCoursesByOrganisationCategory(Form form, String sortByPropertyName) {
-        if (form != null) {
-            //CourseSite needs to be used in order to load Disabled courses
-            List<Course> courses = getCoursesByOrganisationCategoryBatchUid(form.getCategory());
-            return getB2Courses(courses, form, sortByPropertyName);
-        }
-        return null;
-    }
+    // public List<B2Course> getCoursesByOrganisationCategory(Form form, String sortByPropertyName) {
+    //     if (form != null) {
+    //         //CourseSite needs to be used in order to load Disabled courses
+    //         List<Course> courses = getCoursesByOrganisationCategoryBatchUid(form.getCategory());
+    //         return getB2Courses(courses, form, sortByPropertyName);
+    //     }
+    //     return null;
+    // }
 
     private List<B2Course> getB2Courses(List<Course> courses, Form form, String sortByPropertyName) {
         if (null != courses) {
@@ -350,13 +350,7 @@ public class CourseDSKServiceManagerImpl implements CourseDSKServiceManager {
         } else if (StringUtil.notEmpty(selectedCategory) && !selectedCategory.trim().equals("-1")) {
 
             Id categoryId = null;
-            try {
-                categoryId = courseCategoryLoader.load(selectedCategory.trim()).getId();
-                return CourseSearch.getViewCatalogSearch(searchKey, courseSearchOperator, searchText, getCourseDateOperator(form), form.getCreateDateCalendar().getTime(), categoryId, courseServiceLevel);
-            } catch (PersistenceException e) {
-                logger.error("Method: getCourseSearch: " + e.getMessage());
                 return CourseSearch.getInfoSearch(searchKey, courseSearchOperator, searchText, courseServiceLevel);
-            }
         } else if (null != form.getCreateDateCalendar()) {
             return CourseSearch.getViewCoursesSearch(searchKey, courseSearchOperator, searchText, getCourseDateOperator(form), form.getCreateDateCalendar().getTime(), courseServiceLevel);
         } else {
@@ -375,8 +369,8 @@ public class CourseDSKServiceManagerImpl implements CourseDSKServiceManager {
                 return CourseSearch.SearchKey.CourseDescription;
             } else if (searchKey.equals(CourseSearch.SearchKey.Instructor.name())) {
                 return CourseSearch.SearchKey.Instructor;
-            } else if (searchKey.equals(CourseSearch.SearchKey.CategoryId.name())) {
-                return CourseSearch.SearchKey.CategoryId;
+            // } else if (searchKey.equals(CourseSearch.SearchKey.CategoryId.name())) {
+            //     return CourseSearch.SearchKey.CategoryId;
             } else if (searchKey.equals(CourseSearch.SearchKey.DataSourceKey.name())) {
                 return CourseSearch.SearchKey.DataSourceKey;
             }
@@ -410,7 +404,7 @@ public class CourseDSKServiceManagerImpl implements CourseDSKServiceManager {
         return SearchOperator.LessThan;
     }
 
-    private List<CourseCategoryMembership> getCourseCategoryMemberships(String categoryBatchUid) {
+/*     private List<CourseCategoryMembership> getCourseCategoryMemberships(String categoryBatchUid) {
         if (StringUtil.notEmpty(categoryBatchUid)) {
             CourseCategoryMembership courseCategoryMembership = new CourseCategoryMembership();
             courseCategoryMembership.setCategoryBatchUid(categoryBatchUid.trim());
@@ -422,8 +416,8 @@ public class CourseDSKServiceManagerImpl implements CourseDSKServiceManager {
         }
         return null;
     }
-
-    private List<OrganizationCategoryMembership> getOrganisationCategoryMemberships(String categoryBatchUid) {
+ */
+/*     private List<OrganizationCategoryMembership> getOrganisationCategoryMemberships(String categoryBatchUid) {
         if (StringUtil.notEmpty(categoryBatchUid)) {
             OrganizationCategoryMembership organizationCategoryMembership = new OrganizationCategoryMembership();
             organizationCategoryMembership.setCategoryBatchUid(categoryBatchUid.trim());
@@ -434,51 +428,51 @@ public class CourseDSKServiceManagerImpl implements CourseDSKServiceManager {
             }
         }
         return null;
-    }
+    } */
 
-    private List<Course> getCoursesByCourseCategoryBatchUid(String categoryBatchUid) {
-        //course.getBatchUid always return null if courseDbLoader.loadByCourseSearch is used
-        List<Course> courses = null;
-        List<CourseCategoryMembership> courseCategoryMemberships = getCourseCategoryMemberships(categoryBatchUid);
-        if (courseCategoryMemberships != null && courseCategoryMemberships.size() > 0) {
-            courses = new ArrayList<Course>();
-            for (CourseCategoryMembership membership : courseCategoryMemberships) {
-                try {
-                    //courseDbLoader.loadByCourseId does not load Disabled Course
-                    //courseDbLoader.loadByBatchUid will load Disabled Course
-                    courses.add(courseDbLoader.loadByBatchUid(membership.getCourseSiteBatchUid()));
-                } catch (KeyNotFoundException e) {
-                    logger.error("Method: getCourseSitesByCourseCategoryId: KeyNotFoundException " + e.getMessage());
-                } catch (PersistenceException e) {
-                    logger.error("Method: getCourseSitesByCourseCategoryId: PersistenceException " + e.getMessage());
-                }
-            }
-        }
+    // private List<Course> getCoursesByCourseCategoryBatchUid(String categoryBatchUid) {
+    //     //course.getBatchUid always return null if courseDbLoader.loadByCourseSearch is used
+    //     List<Course> courses = null;
+    //     List<CourseCategoryMembership> courseCategoryMemberships = getCourseCategoryMemberships(categoryBatchUid);
+    //     if (courseCategoryMemberships != null && courseCategoryMemberships.size() > 0) {
+    //         courses = new ArrayList<Course>();
+    //         for (CourseCategoryMembership membership : courseCategoryMemberships) {
+    //             try {
+    //                 //courseDbLoader.loadByCourseId does not load Disabled Course
+    //                 //courseDbLoader.loadByBatchUid will load Disabled Course
+    //                 courses.add(courseDbLoader.loadByBatchUid(membership.getCourseSiteBatchUid()));
+    //             } catch (KeyNotFoundException e) {
+    //                 logger.error("Method: getCourseSitesByCourseCategoryId: KeyNotFoundException " + e.getMessage());
+    //             } catch (PersistenceException e) {
+    //                 logger.error("Method: getCourseSitesByCourseCategoryId: PersistenceException " + e.getMessage());
+    //             }
+    //         }
+    //     }
 
-        return courses;
-    }
+    //     return courses;
+    // }
 
-    private List<Course> getCoursesByOrganisationCategoryBatchUid(String categoryBatchUid) {
-        List<Course> courses = null;
-        List<OrganizationCategoryMembership> organisationCategoryMemberships = getOrganisationCategoryMemberships(categoryBatchUid);
-        if (organisationCategoryMemberships != null && organisationCategoryMemberships.size() > 0) {
-            courses = new ArrayList<Course>();
-            for (OrganizationCategoryMembership membership : organisationCategoryMemberships) {
-                try {
-                    //courseDbLoader.loadByCourseId does not load Disabled Course
-                    //courseDbLoader.loadByBatchUid will load Disabled Course
-                    courses.add(courseDbLoader.loadByBatchUid(membership.getOrganizationBatchUid()));
-                    //courses.add((Course)organisationDbLoader.load(membership.getOrganizationBatchUid()));
-                } catch (KeyNotFoundException e) {
-                    logger.error("Method: getCoursesByOrganisationCategoryBatchUid: KeyNotFoundException " + e.getMessage());
-                } catch (PersistenceException e) {
-                    logger.error("Method: getCoursesByOrganisationCategoryBatchUid: PersistenceException " + e.getMessage());
-                }
-            }
-        }
+    // private List<Course> getCoursesByOrganisationCategoryBatchUid(String categoryBatchUid) {
+    //     List<Course> courses = null;
+    //     List<OrganizationCategoryMembership> organisationCategoryMemberships = getOrganisationCategoryMemberships(categoryBatchUid);
+    //     if (organisationCategoryMemberships != null && organisationCategoryMemberships.size() > 0) {
+    //         courses = new ArrayList<Course>();
+    //         for (OrganizationCategoryMembership membership : organisationCategoryMemberships) {
+    //             try {
+    //                 //courseDbLoader.loadByCourseId does not load Disabled Course
+    //                 //courseDbLoader.loadByBatchUid will load Disabled Course
+    //                 courses.add(courseDbLoader.loadByBatchUid(membership.getOrganizationBatchUid()));
+    //                 //courses.add((Course)organisationDbLoader.load(membership.getOrganizationBatchUid()));
+    //             } catch (KeyNotFoundException e) {
+    //                 logger.error("Method: getCoursesByOrganisationCategoryBatchUid: KeyNotFoundException " + e.getMessage());
+    //             } catch (PersistenceException e) {
+    //                 logger.error("Method: getCoursesByOrganisationCategoryBatchUid: PersistenceException " + e.getMessage());
+    //             }
+    //         }
+    //     }
 
-        return courses;
-    }
+    //     return courses;
+    // }
 
 
     private void log(CourseSite courseSite, PersistenceOutcome outcome) {

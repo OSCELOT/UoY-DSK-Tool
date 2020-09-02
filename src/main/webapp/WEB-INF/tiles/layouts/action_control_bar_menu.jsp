@@ -41,17 +41,21 @@
 <fmt:message var="tUserEnrolment" key="action.control.bar.button.title.user_enrolment"/>
 
 <fmt:message var="mCourseTitle" key="action.control.bar.menu.title.course"/>
+<%-- 
 <fmt:message var="iCourseCategoryTitle" key="action.control.bar.menu.course.item.title.category"/>
 <fmt:message var="iCourseCategoryHref" key="action.control.bar.menu.course.item.href.category"/>
 <fmt:message var="iCourseCategoryTarget" key="action.control.bar.menu.course.item.target.caetgroy"/>
+--%>
 <fmt:message var="iCourseCourseTitle" key="action.control.bar.menu.course.item.title.course"/>
 <fmt:message var="iCourseCourseHref" key="action.control.bar.menu.course.item.href.course"/>
 <fmt:message var="iCourseCourseTarget" key="action.control.bar.menu.course.item.target.course"/>
 
 <fmt:message var="mOrganisationTitle" key="action.control.bar.menu.title.organisation"/>
+<%-- 
 <fmt:message var="iOrganisationCategoryTitle" key="action.control.bar.menu.organisation.item.title.category"/>
 <fmt:message var="iOrganisationCategoryHref" key="action.control.bar.menu.organisation.item.href.category"/>
 <fmt:message var="iOrganisationCategoryTarget" key="action.control.bar.menu.organisation.item.target.caetgroy"/>
+--%>
 <fmt:message var="iOrganisationOrganisationTitle" key="action.control.bar.menu.organisation.item.title.organisation"/>
 <fmt:message var="iOrganisationOrganisationHref" key="action.control.bar.menu.organisation.item.href.organisation"/>
 <fmt:message var="iOrganisationOrganisationTarget" key="action.control.bar.menu.organisation.item.target.organisation"/>
@@ -71,11 +75,11 @@
 	<bbNG:actionButton title="${bUserTitle}" url="${b2ContextPath}${bUserUrl}" primary="true"/>
 	<bbNG:actionMenu title="${mCourseTitle}">
     	<bbNG:actionMenuItem title="${iCourseCourseTitle}" href="${b2ContextPath}${iCourseCourseHref}"/>
-		<bbNG:actionMenuItem title="${iCourseCategoryTitle}" href="${b2ContextPath}${iCourseCategoryHref}"/>
+        <%--		<bbNG:actionMenuItem title="${iCourseCategoryTitle}" href="${b2ContextPath}${iCourseCategoryHref}"/>--%>
 	</bbNG:actionMenu>
 	<bbNG:actionMenu title="${mOrganisationTitle}">
     	<bbNG:actionMenuItem title="${iOrganisationOrganisationTitle}" href="${b2ContextPath}${iOrganisationOrganisationHref}"/>
-		<bbNG:actionMenuItem title="${iOrganisationCategoryTitle}" href="${b2ContextPath}${iOrganisationCategoryHref}"/>
+        <%--		<bbNG:actionMenuItem title="${iOrganisationCategoryTitle}" href="${b2ContextPath}${iOrganisationCategoryHref}"/>--%>
 	</bbNG:actionMenu>
 	<bbNG:actionMenu title="${mEnrolmentTitle}">
 		<bbNG:actionMenuItem title="${iEnrolmentCourseTitle}" href="${b2ContextPath}/enrolment/course"/>

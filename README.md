@@ -1,6 +1,19 @@
 # UoY-DSK-Tool
 The University of York Data Source Key building block which allows system administrators to alter user, course and enrolment DSK, row status and availability via the GUI.
 
+## Version 2.6.0
+From Learn SaaS version v3800.15.0 (Released to Production 6 August 2020) the following Java APIs which have been removed (they were deprecated since 2015):
+```
+    CourseCategoryMembershipLoader
+    CourseCategoryMembershipPersister
+    OrganizationCategoryLoader
+    OrganizationCategoryMembershipLoader
+    OrganizationCategoryMembershipPersister
+    OrganizationCategoryPersister
+
+```
+Thus, we commented out all the functionalities for searching courses/organizations according to their category. 
+
 ## Version 2.5.3
 Fixed [Version 2.5.2 throwing error in OpenJDK Instance](https://github.com/OSCELOT/UoY-DSK-Tool/issues/2) issue reported by [hcrites54](https://github.com/hcrites54).
 

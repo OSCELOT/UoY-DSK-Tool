@@ -36,7 +36,7 @@
 				<%@ include file="/WEB-INF/includes/form/go_button.jsp" %> 							
 			</td> 
 		</tr> 
-		<tr>
+<!-- 		<tr>
 			<td align="right"><fmt:message key="search.user.label.select_category"/> </td>
 			<td>
 				<form:select path="category">
@@ -53,6 +53,6 @@
 					<form:options items="${organisationCategories}"  itemLabel="itemLabel" itemValue="itemValue" />
 				</form:select> 
 			</td>
-		</tr>	
+		</tr> -->	
 	</tbody> 
 </table>

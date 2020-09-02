@@ -39,8 +39,8 @@ import uk.ac.york.its.vle.b2.dsk.model.PersistenceOutcome;
 
 public interface CourseDSKServiceManager {
 	public List<B2Course> getCourses(Form form, String sortByPropertyName);
-	public List<B2Course> getCoursesByCourseCategory(Form form, String sortByPropertyName);
+	// public List<B2Course> getCoursesByCourseCategory(Form form, String sortByPropertyName);
 	public List<PersistenceOutcome> persistCourse(String[] selectedCourseIds, Form form);
 	public List<B2Course> getOrganisations(Form form, String sortByPropertyName);
-	public List<B2Course> getCoursesByOrganisationCategory(Form form, String string);
+	// public List<B2Course> getCoursesByOrganisationCategory(Form form, String string);
 }

@@ -5,7 +5,7 @@
         <description value="b2.description"/>
         <handle value="dsk"/>
         <default-locale value="en_GB"/>
-        <version value="2.5.3"/>
+        <version value="2.6.0"/>
         <requires>
             <bbversion value="9.1.0.0"/>
         </requires>

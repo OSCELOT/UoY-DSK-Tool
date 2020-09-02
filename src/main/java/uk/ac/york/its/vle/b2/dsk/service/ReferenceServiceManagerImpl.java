@@ -52,7 +52,7 @@ import blackboard.admin.data.category.CourseCategory;
 import blackboard.admin.data.category.OrganizationCategory;
 import blackboard.admin.data.datasource.DataSource;
 import blackboard.admin.persist.category.CourseCategoryLoader;
-import blackboard.admin.persist.category.OrganizationCategoryLoader;
+// import blackboard.admin.persist.category.OrganizationCategoryLoader;
 import blackboard.admin.persist.datasource.DataSourceLoader;
 import blackboard.data.course.CourseMembership;
 import blackboard.persist.PersistenceException;
@@ -74,11 +74,11 @@ public class ReferenceServiceManagerImpl implements ReferenceServiceManager {
 	@Autowired
 	private DataSourceLoader dataSourceLoader;
 	
-	@Autowired
-	private CourseCategoryLoader categoryLoader;
+	// @Autowired
+	// private CourseCategoryLoader categoryLoader;
 	
-	@Autowired
-	private OrganizationCategoryLoader organisationCategoryLoader;
+	// @Autowired
+	// private OrganizationCategoryLoader organisationCategoryLoader;
 	
 	@Resource
 	private Map<String, String> modelAndSessionAttributesMap;
@@ -138,106 +138,106 @@ public class ReferenceServiceManagerImpl implements ReferenceServiceManager {
 	private List<String> courseEnrolmentDataSourceKeyExcludedPatterns;
 	
 	
-	public List<GenericFormSelectOption> getCourseCategories(){
-		List<CourseCategory> categories=getCourseCategoriesList();
-		if(null!=categories && categories.size()>0){
-			List<GenericFormSelectOption> list=new LinkedList<GenericFormSelectOption>();
-			for(CourseCategory category:categories){
-				list.add(new GenericFormSelectOptionImpl(category));
-			}
-			if(list.size()>0){
-				return list;
-			}
-		}
-		return null;
-	}
+	// public List<GenericFormSelectOption> getCourseCategories(){
+	// 	List<CourseCategory> categories=getCourseCategoriesList();
+	// 	if(null!=categories && categories.size()>0){
+	// 		List<GenericFormSelectOption> list=new LinkedList<GenericFormSelectOption>();
+	// 		for(CourseCategory category:categories){
+	// 			list.add(new GenericFormSelectOptionImpl(category));
+	// 		}
+	// 		if(list.size()>0){
+	// 			return list;
+	// 		}
+	// 	}
+	// 	return null;
+	// }
 
-	public List<GenericFormSelectOption> getOrganisationCategories(){
-		List<OrganizationCategory> categories=getOrganisationCategoriesList();
-		if(null!=categories && categories.size()>0){
-			List<GenericFormSelectOption> list=new LinkedList<GenericFormSelectOption>();
-			for(OrganizationCategory category:categories){
-				list.add(new GenericFormSelectOptionImpl(category));
-			}
-			if(list.size()>0){
-				return list;
-			}
-		}
-		return null;
-	}
+	// public List<GenericFormSelectOption> getOrganisationCategories(){
+	// 	List<OrganizationCategory> categories=getOrganisationCategoriesList();
+	// 	if(null!=categories && categories.size()>0){
+	// 		List<GenericFormSelectOption> list=new LinkedList<GenericFormSelectOption>();
+	// 		for(OrganizationCategory category:categories){
+	// 			list.add(new GenericFormSelectOptionImpl(category));
+	// 		}
+	// 		if(list.size()>0){
+	// 			return list;
+	// 		}
+	// 	}
+	// 	return null;
+	// }
 	
-	public List<CourseCategory> getCourseCategoriesList(){
-		List<CourseCategory> categories=null;
-		try {
-			categories=categoryLoader.load( new CourseCategory());
-			if(null!=categories && categories.size()>0){
-				PropertyComparator.sort (categories, new MutableSortDefinition ( "batchUid", true, true));
-				if(null!=categoryExcludedPatterns){
-					Collections.sort(categoryExcludedPatterns);
-					String batchUid=null;
-					for(String regex:categoryExcludedPatterns){
-						if(StringUtil.notEmpty(regex)){
-							List<CourseCategory> categories2Removed=new LinkedList<CourseCategory>();
-							for(CourseCategory category:categories){
-								if(StringUtil.notEmpty(batchUid=category.getBatchUid())
-										&& batchUid.matches(regex)){
-									categories2Removed.add(category);
-								}
-							}
+	// public List<CourseCategory> getCourseCategoriesList(){
+	// 	List<CourseCategory> categories=null;
+	// 	try {
+	// 		categories=categoryLoader.load( new CourseCategory());
+	// 		if(null!=categories && categories.size()>0){
+	// 			PropertyComparator.sort (categories, new MutableSortDefinition ( "batchUid", true, true));
+	// 			if(null!=categoryExcludedPatterns){
+	// 				Collections.sort(categoryExcludedPatterns);
+	// 				String batchUid=null;
+	// 				for(String regex:categoryExcludedPatterns){
+	// 					if(StringUtil.notEmpty(regex)){
+	// 						List<CourseCategory> categories2Removed=new LinkedList<CourseCategory>();
+	// 						for(CourseCategory category:categories){
+	// 							if(StringUtil.notEmpty(batchUid=category.getBatchUid())
+	// 									&& batchUid.matches(regex)){
+	// 								categories2Removed.add(category);
+	// 							}
+	// 						}
 							
-							if(null!=categories2Removed && categories2Removed.size()>0){
-								categories.removeAll(categories2Removed);
-							}
-						}
-					}
-				}
-			}
+	// 						if(null!=categories2Removed && categories2Removed.size()>0){
+	// 							categories.removeAll(categories2Removed);
+	// 						}
+	// 					}
+	// 				}
+	// 			}
+	// 		}
 
-			if(null!=categories){
-				return Collections.unmodifiableList (categories);
-			}
-		} catch (PersistenceException e) {
-			logger.error("Method: getCourseCategoriesList: "+e.getMessage());
-		}
-		return null;
-	}
+	// 		if(null!=categories){
+	// 			return Collections.unmodifiableList (categories);
+	// 		}
+	// 	} catch (PersistenceException e) {
+	// 		logger.error("Method: getCourseCategoriesList: "+e.getMessage());
+	// 	}
+	// 	return null;
+	// }
 	
-	public List<OrganizationCategory> getOrganisationCategoriesList(){
-		List<OrganizationCategory> categories=null;
-		try {
-			categories=organisationCategoryLoader.load( new OrganizationCategory());
+	// public List<OrganizationCategory> getOrganisationCategoriesList(){
+	// 	List<OrganizationCategory> categories=null;
+	// 	try {
+	// 		categories=organisationCategoryLoader.load( new OrganizationCategory());
 			
-			if(null!=categories && categories.size()>0){
-				PropertyComparator.sort (categories, new MutableSortDefinition ( "batchUid", true, true));
-				if(null!=organisationCategoryExcludedPatterns){
-					Collections.sort(organisationCategoryExcludedPatterns);
-					String batchUid=null;
-					for(String regex:organisationCategoryExcludedPatterns){
-						if(StringUtil.notEmpty(regex)){
-							List<OrganizationCategory> categories2Removed=new LinkedList<OrganizationCategory>();
-							for(OrganizationCategory category:categories){
-								if(StringUtil.notEmpty(batchUid=category.getBatchUid())
-										&& batchUid.matches(regex)){
-									categories2Removed.add(category);
-								}
-							}
+	// 		if(null!=categories && categories.size()>0){
+	// 			PropertyComparator.sort (categories, new MutableSortDefinition ( "batchUid", true, true));
+	// 			if(null!=organisationCategoryExcludedPatterns){
+	// 				Collections.sort(organisationCategoryExcludedPatterns);
+	// 				String batchUid=null;
+	// 				for(String regex:organisationCategoryExcludedPatterns){
+	// 					if(StringUtil.notEmpty(regex)){
+	// 						List<OrganizationCategory> categories2Removed=new LinkedList<OrganizationCategory>();
+	// 						for(OrganizationCategory category:categories){
+	// 							if(StringUtil.notEmpty(batchUid=category.getBatchUid())
+	// 									&& batchUid.matches(regex)){
+	// 								categories2Removed.add(category);
+	// 							}
+	// 						}
 							
-							if(null!=categories2Removed && categories2Removed.size()>0){
-								categories.removeAll(categories2Removed);
-							}
-						}
-					}
-				}
-			}
+	// 						if(null!=categories2Removed && categories2Removed.size()>0){
+	// 							categories.removeAll(categories2Removed);
+	// 						}
+	// 					}
+	// 				}
+	// 			}
+	// 		}
 
-			if(null!=categories){
-				return Collections.unmodifiableList (categories);
-			}
-		} catch (PersistenceException e) {
-			logger.error("Method: getOrganisationCategoriesList: "+e.getMessage());
-		}
-		return null;
-	}
+	// 		if(null!=categories){
+	// 			return Collections.unmodifiableList (categories);
+	// 		}
+	// 	} catch (PersistenceException e) {
+	// 		logger.error("Method: getOrganisationCategoriesList: "+e.getMessage());
+	// 	}
+	// 	return null;
+	// }
 
 	public List<CourseSearch.SearchKey> getCourseSearchKeysList() {
 		return getCustomisedCourseSearchKeys(courseSearchKeysMap);

@@ -110,16 +110,16 @@ public class DSKController {
         return referenceServiceManager.getCourseSearchOperators();
     }
 
-    @ModelAttribute("categories") // Form Reference Object
-    public List<GenericFormSelectOption> populateCategories() {
-        return referenceServiceManager.getCourseCategories();
-    }
+    // @ModelAttribute("categories") // Form Reference Object
+    // public List<GenericFormSelectOption> populateCategories() {
+    //     return referenceServiceManager.getCourseCategories();
+    // }
 
 
-    @ModelAttribute("organisationCategories") // Form Reference Object
-    public List<GenericFormSelectOption> populateOrganisationCategories() {
-        return referenceServiceManager.getOrganisationCategories();
-    }
+    // @ModelAttribute("organisationCategories") // Form Reference Object
+    // public List<GenericFormSelectOption> populateOrganisationCategories() {
+    //     return referenceServiceManager.getOrganisationCategories();
+    // }
 
     @ModelAttribute("dateOperators") // Form Reference Object
     public List<GenericFormSelectOption> populateDateSearchOperators() {

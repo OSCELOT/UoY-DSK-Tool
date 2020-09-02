@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+
+    Copyright (C) 2016 University of York, UK.
+
+    This project was initiated through a donation of source code by the
+    University of York, UK. It contains free software; you can redistribute
+    it and/or modify it under the terms of the GNU General Public License as
+    published by the Free Software Foundation; either version 2 of the
+    License, or any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+    For more information please contact:
+
+    Web Services Group
+    IT Service
+    University of York
+    YO10 5DD
+  United Kingdom
+
+-->
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+       
+<tiles-definitions>
+	
+	<!-- receipt.template -->
+	<definition name="receipt.template"
+		template="/WEB-INF/tiles/layouts/layout_receipt.jsp">				
+	</definition>
+	
+	<!-- receipt.template extension-->
+	<definition name="success" extends="receipt.template">
+		<put-attribute name="body" value="/WEB-INF/views/receipt/success.jsp" />
+	</definition>
+	
+	<definition name="success_user" extends="receipt.template">
+		<put-attribute name="body" value="/WEB-INF/views/receipt/persist_user_inventory.jsp" />
+	</definition>
+
+	<definition name="success_course" extends="receipt.template">
+		<put-attribute name="body" value="/WEB-INF/views/receipt/persist_course_inventory.jsp" />
+	</definition>
+	
+	<definition name="success_enrolment" extends="receipt.template">
+		<put-attribute name="body" value="/WEB-INF/views/receipt/persist_enrolment_inventory.jsp" />
+	</definition>
+
+	<!-- standard.template -->
+	<definition name="standard.template"
+		template="/WEB-INF/tiles/layouts/layout_default.jsp">
+		<put-attribute name="script" value="/WEB-INF/tiles/layouts/script.jsp" />
+		<put-attribute name="action_control_bar" value="/WEB-INF/tiles/layouts/action_control_bar_menu.jsp" />
+		<put-attribute name="menu_update" value="" />
+		<put-attribute name="search_date" value="" />
+		<put-attribute name="search" value="" />
+		
+		<put-attribute name="user_inventory" value="" />
+	</definition>
+
+	<!-- search.template extension-->	
+	<definition name="user" extends="standard.template">
+		<put-attribute name="search" value="/WEB-INF/views/search/search_by_user.jsp" />
+		<put-attribute name="menu_update" value="/WEB-INF/tiles/layouts/menu_update.jsp" />
+		<put-attribute name="user_inventory" value="/WEB-INF/views/inventory/user_inventory.jsp" />
+	</definition>
+
+	<definition name="course" extends="standard.template">
+		<put-attribute name="search" value="/WEB-INF/views/search/search_by_course.jsp" />
+		<put-attribute name="menu_update" value="/WEB-INF/tiles/layouts/menu_update.jsp" />	
+		<put-attribute name="course_inventory" value="/WEB-INF/views/inventory/course_inventory.jsp" />			
+	</definition>
+		
+	<definition name="course_course" extends="standard.template">
+		<put-attribute name="search" value="/WEB-INF/views/search/search_by_course.jsp" />
+		<put-attribute name="search_date" value="/WEB-INF/tiles/layouts/menu_date_search.jsp" />
+		<put-attribute name="menu_update" value="/WEB-INF/tiles/layouts/menu_update.jsp" />	
+		<put-attribute name="course_inventory" value="/WEB-INF/views/inventory/course_inventory.jsp" />	
+	</definition>
+	
+	<definition name="course_category" extends="standard.template">
+		<put-attribute name="search" value="/WEB-INF/views/search/search_by_category.jsp" />
+		<put-attribute name="search_date" value="/WEB-INF/tiles/layouts/menu_date_search.jsp" />
+		<put-attribute name="menu_update" value="/WEB-INF/tiles/layouts/menu_update.jsp" />	
+		<put-attribute name="course_inventory" value="/WEB-INF/views/inventory/course_inventory.jsp" />	
+	</definition>
+
+	<definition name="user_enrolment" extends="standard.template">
+		<put-attribute name="search" value="/WEB-INF/views/search/search_by_user_id.jsp" />
+		<put-attribute name="menu_update" value="/WEB-INF/tiles/layouts/menu_update.jsp" />	
+		<put-attribute name="user_enrolment_inventory" value="/WEB-INF/views/inventory/user_enrolment_inventory.jsp" />		
+	</definition>
+
+	<definition name="course_enrolment" extends="standard.template">
+		<put-attribute name="search" value="/WEB-INF/views/search/search_by_course_id.jsp" />
+		<put-attribute name="menu_update" value="/WEB-INF/tiles/layouts/menu_update.jsp" />	
+		<put-attribute name="course_enrolment_inventory" value="/WEB-INF/views/inventory/course_enrolment_inventory.jsp" />		
+	</definition>
+</tiles-definitions>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <plugin>
+        <name value="b2.name"/>
+        <description value="b2.description"/>
+        <handle value="dsk"/>
+        <default-locale value="en_GB"/>
+        <version value="2.6.0"/>
+        <requires>
+            <bbversion value="9.1.0.0"/>
+        </requires>
+        <vendor>
+            <id value="york"/>
+            <name value="University of York"/>
+            <url value="http://www.york.ac.uk/"/>
+            <description value="University of York, UK"/>
+        </vendor>
+
+        <http-actions>
+            <config value=""/>
+            <remove value=""/>
+        </http-actions>
+
+
+        <!-- Extension tools definition -->
+        <application-defs>
+            <application handle="york_dsk_tool" type="system" use-ssl="false" name="b2.app.name"
+                         can-allow-guest="false" small-icon="" large-icon="">
+                <description lang="en_GB" value="b2.app.description"/>
+                <links>
+                    <link>
+                        <type value="system_tool"/>
+                        <name value="b2.app.name"/>
+                        <url value="user"/>
+                        <description lang="en_GB" value="b2.app.description"/>
+                    </link>
+                </links>
+            </application>
+        </application-defs>
+
+        <schema-dirs>
+            <schema-dir dir-name="schema"/>
+        </schema-dirs>
+
+        <permissions>
+            <permission type="blackboard.data.AttributePermission" name="user.personalinfo" actions="set,get"/>
+            <permission type="blackboard.data.AttributePermission" name="user.authinfo" actions="get"/>
+            <permission type="blackboard.data.AttributePermission" name="user.cardnumber" actions="get"/>
+            <permission type="blackboard.persist.PersistPermission" name="userlifecycleeventimpl" actions="create"/>
+            <permission type="blackboard.persist.PersistPermission" name="userlifecycleeventpropertyimpl"
+                        actions="create"/>
+            <permission type="blackboard.persist.PersistPermission" name="coursemembership" actions="create,modify"/>
+
+
+            <!-- The following two permissions are required by Spring  -->
+            <permission type="java.lang.reflect.ReflectPermission" name="suppressAccessChecks"/>
+            <permission type="java.lang.RuntimePermission" name="accessDeclaredMembers"/>
+            <permission type="java.lang.RuntimePermission" name="createClassLoader"/>
+            <permission type="java.lang.RuntimePermission" name="setContextClassLoader"/>
+            <permission type="java.io.FilePermission" name="${java.home}/lib/*" actions="read"/>
+
+
+            <!--java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "getenv.*")-->
+            <permission type="java.lang.RuntimePermission" name="getenv.spring.*"/>
+
+        </permissions>
+    </plugin>
+</manifest>
